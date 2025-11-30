@@ -94,7 +94,7 @@ const updateUser = async (req, res) => {
         const {userId} = req.params
         const {fullName, email, gender, country, phone, password} = req.body 
 
-        if (!fullName || !email || !gender || !country || !phone ) {
+        if (!fullName || !email || !gender || !country || !phone || !password ) {
 
             return errorHandler(
                 res, 
