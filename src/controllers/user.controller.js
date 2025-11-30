@@ -309,6 +309,43 @@ const verifyEmail = async (req, res) => {
     }
 }
 
+const getMe = async (req, res) => {
+    try {
+
+    const userId = req.user.userId;
+
+    const user = await userModel.getUserById(userId);
+
+    if (!user) {
+        return errorHandler(
+            res,
+            false,
+            404,
+            "User tidak ditemukan"
+        );
+        }
+
+        console.log('data user :', user)
+
+        return successHandler(
+        res,
+        true,
+        200,
+        "Data user login",
+        user
+        );
+
+    } catch (error) {
+        return errorHandler(
+        res,
+        false,
+        500,
+        `Internal Server Error: ${error.message}`
+        );
+    }
+}
+
+
 module.exports = {
     getAllUsers,
     createUser,
@@ -316,6 +353,7 @@ module.exports = {
     deleteUser,
     getUserById,
     loginUser,
-    verifyEmail
+    verifyEmail,
+    getMe
 
 }
