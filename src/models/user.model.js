@@ -12,8 +12,9 @@ const getAllUsers = () =>
 const createUser = (fullName, email, gender, country, phone, password, verificationToken) =>
     new Promise((resolve, reject) => {
         const sql = `
-            INSERT INTO users (user_id, fullname, email, gender, country, phone, password, verification_token, is_verified)
-            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, false)
+            INSERT INTO users (user_id, fullname, email, gender, country, phone, password, verification_token, is_verified, role)
+            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, false, 'user')
+
         `
         const values = [crypto.randomUUID(), fullName, email, gender, country, phone, password, verificationToken]
 
